@@ -48,6 +48,8 @@ function createBackgroundElements() {
     
     previousBg.className = 'hero-background previous';
     currentBg.className = 'hero-background current';
+
+    if(!hero)return{previousBg, currentBg };
     
     hero.insertBefore(previousBg, hero.firstChild);
     hero.insertBefore(currentBg, hero.firstChild);
@@ -84,7 +86,8 @@ currentImageIndex = 1;
 preloadImages();
 
 // Change background every 5 seconds
-setInterval(changeBackground, 5000);
+if(hero)
+    setInterval(changeBackground, 5000);
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -177,4 +180,60 @@ if (modal) {
             document.body.style.overflow = 'auto';
         }
     });
+}
+
+// Recommendation Modal Functionality
+const recommendationModal = document.getElementById('recommendationModal');
+if (recommendationModal) {
+    const modalImg = recommendationModal.querySelector('.modal-img');
+    const modalTitle = recommendationModal.querySelector('.modal-title');
+    const modalPosition = recommendationModal.querySelector('.modal-position');
+    const closeBtn = recommendationModal.querySelector('.close-btn');
+
+    // Get all recommendation items
+    const recommendationItems = document.querySelectorAll('.recommendation-item');
+
+    // Add click event to each recommendation item
+    recommendationItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('.recommendation-img');
+            const name = item.querySelector('h3').textContent;
+            const position = item.querySelector('p').textContent;
+
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modalTitle.textContent = name;
+            modalPosition.textContent = position;
+            
+            recommendationModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close modal when clicking the close button
+    closeBtn.addEventListener('click', () => {
+        recommendationModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', (e) => {
+        if (e.target === recommendationModal) {
+            recommendationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && recommendationModal.style.display === 'block') {
+            recommendationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
 } 
+
+window.addEventListener('DOMContentLoaded',()=>{
+    console.log("load")
+    // window.resizeTo(window.innerWidth,window.innerHeight)
+})

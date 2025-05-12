@@ -9,6 +9,7 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
+    /* width: 100vw; */
 }
 
 /* Navigation */
@@ -16,7 +17,7 @@ body {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
-    width: 100%;
+    width: 100vw;
     top: 0;
     z-index: 1000;
 }
@@ -487,19 +488,19 @@ body {
     }
 
     .nav-links li {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     .hero h1 {
         font-size: 2rem;
     }
 
     .timeline::before {
-        left: 30px;
+        left: 0px;
     }
 
     .timeline-content {
         width: 100%;
-        margin-left: 60px !important;
+        margin-left: 15px !important;
     }
 
     .footer-content {
@@ -509,5 +510,221 @@ body {
 
     .social-links {
         margin-top: 1rem;
+    }
+}
+
+/* Recommendations Section */
+.recommendations {
+    padding: 5rem 2rem;
+    background-color: #f8f9fa;
+}
+
+.recommendations h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recommendation-item {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.recommendation-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.recommendation-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.recommendation-item:hover .recommendation-img {
+    transform: scale(1.05);
+}
+
+.recommendation-item h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.recommendation-item p {
+    padding: 0 1rem 1rem;
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Modal Styles for Recommendations */
+#recommendationModal .modal-content {
+    max-width: 800px;
+    width: 90%;
+}
+
+#recommendationModal .modal-img {
+    max-height: 70vh;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+#recommendationModal .modal-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+#recommendationModal .modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+#recommendationModal .modal-position {
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 6rem 2rem;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+.contact-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #007bff;
+    border-radius: 2px;
+}
+
+.contact-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.contact-item {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    background: #f0f7ff;
+    padding: 1rem;
+    border-radius: 50%;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-details {
+    flex: 1;
+}
+
+.contact-details h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.contact-details a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    word-break: break-all;
+}
+
+.contact-details a:hover {
+    color: #007bff;
+}
+
+/* Responsive Design for Contact Section */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 4rem 1rem;
+    }
+
+    .contact-section h2 {
+        font-size: 2rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-item {
+        padding: 1.5rem;
+    }
+
+    .contact-icon {
+        font-size: 1.5rem;
+        min-width: 50px;
+        height: 50px;
+        padding: 0.8rem;
     }
 } 
